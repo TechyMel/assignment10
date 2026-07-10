@@ -17,8 +17,12 @@ def get_engine(database_url: str = settings.DATABASE_URL):
         Engine: A new SQLAlchemy Engine instance.
     """
     try:
+        connect_args = {}
+        if database_url.startswith("sqlite"):
+            connect_args["check_same_thread"] = False
+
         # Create an engine instance with echo=True to log SQL queries (useful for learning)
-        engine = create_engine(database_url, echo=True)
+        engine = create_engine(database_url, echo=True, connect_args=connect_args)
         return engine
     except SQLAlchemyError as e:
         print(f"Error creating engine: {e}")

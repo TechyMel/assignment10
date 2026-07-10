@@ -4,7 +4,7 @@ import uuid
 from typing import Optional, Dict, Any
 
 from sqlalchemy import Column, String, DateTime, Boolean
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.types import UUID
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.exc import IntegrityError
 from passlib.context import CryptContext
